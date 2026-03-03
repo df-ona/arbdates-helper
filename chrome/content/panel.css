@@ -1,0 +1,393 @@
+/* ArbDates Helper Panel */
+#arbdates-helper-root {
+  all: initial;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  color: #1a1a2e;
+}
+
+#arbdates-helper-root * {
+  box-sizing: border-box;
+}
+
+#arbdates-panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 380px;
+  max-height: 92vh;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  z-index: 2147483647;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+#arbdates-panel.collapsed {
+  max-height: 52px;
+  overflow: hidden;
+}
+
+#arbdates-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #fff;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: move;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+#arbdates-header .arb-title {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#arbdates-header .arb-title span.arb-dot {
+  width: 10px;
+  height: 10px;
+  background: #4ecca3;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#arbdates-header-btns {
+  display: flex;
+  gap: 6px;
+}
+
+#arbdates-header-btns button {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+#arbdates-header-btns button:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+#arbdates-body {
+  padding: 16px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.arb-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+/* Search input */
+#arb-search {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 7px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+  background: #f9f9f9;
+  color: #1a1a2e;
+}
+#arb-search:focus {
+  border-color: #4ecca3;
+  background: #fff;
+}
+
+/* Arbitrator list */
+#arb-list-container {
+  border: 1.5px solid #e8e8e8;
+  border-radius: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+  background: #fafafa;
+}
+
+.arb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition: background 0.1s;
+  border-bottom: 1px solid #f0f0f0;
+}
+.arb-item:last-child { border-bottom: none; }
+.arb-item:hover { background: #f0fdf8; }
+.arb-item.selected { background: #e6faf4; }
+.arb-item input[type="checkbox"] {
+  accent-color: #4ecca3;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.arb-item label {
+  cursor: pointer;
+  font-size: 13px;
+  color: #1a1a2e;
+  flex: 1;
+}
+
+.arb-list-empty {
+  padding: 14px;
+  text-align: center;
+  color: #aaa;
+  font-size: 13px;
+}
+
+/* Selected count badge */
+#arb-selected-count {
+  font-size: 12px;
+  color: #4ecca3;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Date inputs */
+.arb-date-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.arb-date-row input[type="date"] {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 7px;
+  font-size: 13px;
+  outline: none;
+  color: #1a1a2e;
+  background: #f9f9f9;
+  transition: border-color 0.15s;
+}
+.arb-date-row input[type="date"]:focus {
+  border-color: #4ecca3;
+  background: #fff;
+}
+
+.arb-date-label {
+  font-size: 12px;
+  color: #888;
+  width: 36px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.arb-btn {
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.arb-btn:active { transform: scale(0.97); }
+
+.arb-btn-primary {
+  background: linear-gradient(135deg, #4ecca3, #38b28d);
+  color: #fff;
+  width: 100%;
+  padding: 11px;
+  font-size: 14px;
+}
+.arb-btn-primary:hover { background: linear-gradient(135deg, #38b28d, #2d9678); }
+.arb-btn-primary:disabled {
+  background: #c8e6dc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.arb-btn-secondary {
+  background: #f0f0f0;
+  color: #555;
+}
+.arb-btn-secondary:hover { background: #e4e4e4; }
+
+/* Output area */
+#arb-output-section { display: none; }
+#arb-output-section.visible { display: block; }
+
+#arb-output {
+  width: 100%;
+  min-height: 100px;
+  max-height: 180px;
+  padding: 10px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  resize: vertical;
+  background: #f9f9f9;
+  color: #1a1a2e;
+  outline: none;
+}
+
+#arb-copy-btn {
+  margin-top: 8px;
+  width: 100%;
+  background: #1a1a2e;
+  color: #fff;
+}
+#arb-copy-btn:hover { background: #2a2a4e; }
+
+/* Status / loading */
+#arb-status {
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  min-height: 18px;
+}
+#arb-status.error { color: #e05c5c; }
+#arb-status.success { color: #38b28d; }
+
+.arb-spinner {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 2px solid #ccc;
+  border-top-color: #4ecca3;
+  border-radius: 50%;
+  animation: arb-spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+@keyframes arb-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Select all / clear row */
+.arb-quick-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 5px;
+}
+.arb-quick-row .arb-btn {
+  font-size: 11px;
+  padding: 4px 10px;
+}
+
+/* ─── Calendar ─────────────────────────────────────────────── */
+#arb-calendar {
+  background: #fafafa;
+  border: 1.5px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 8px;
+  user-select: none;
+}
+
+.cal-hint {
+  font-size: 11px;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+
+.cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.cal-nav-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  color: #555;
+  padding: 0 6px;
+  border-radius: 4px;
+  transition: background 0.1s;
+}
+.cal-nav-btn:hover { background: #ececec; }
+
+.cal-month-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.cal-day-name {
+  font-size: 10px;
+  font-weight: 700;
+  color: #aaa;
+  text-align: center;
+  padding: 2px 0 4px;
+}
+
+.cal-cell {
+  text-align: center;
+  padding: 5px 2px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #1a1a2e;
+  transition: background 0.1s;
+}
+.cal-cell:hover { background: #e6faf4; }
+.cal-cell.cal-empty { cursor: default; }
+.cal-cell.cal-selected {
+  background: #4ecca3;
+  color: #fff;
+  font-weight: 700;
+}
+.cal-cell.cal-selected:hover { background: #38b28d; }
+.cal-cell.cal-hover-range {
+  background: #c8f0e4;
+}
+
+.cal-summary {
+  font-size: 11px;
+  color: #888;
+  text-align: center;
+  margin: 6px 0 4px;
+}
+
+.cal-clear-btn {
+  font-size: 11px;
+  padding: 4px 10px;
+  width: 100%;
+}
+
+.arb-item-label {
+  font-size: 13px;
+  color: #1a1a2e;
+  flex: 1;
+  cursor: pointer;
+}
