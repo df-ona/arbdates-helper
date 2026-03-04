@@ -5,21 +5,28 @@ Browser extension to select names of labour arbitrators and check their availabl
 
 # Installation
 
-1. Download this repo and unzip
+1. Download this repository by clicking the green "Code" button and selecting "Download Zip".
+2. Extract the contents to a folder of your choosing. 
 
 ## Firefox
 
 1. Open tab for [About Addons](about:addons)
-1. Click settings gear and choose "install addon from file..."
-1. Select `ArbDates-Helper-Firefox.xpi` and install
+2. Click settings gear and choose "install addon from file..."
+3. Navigate to the unzipped folder. 
+4. Select `ArbDates-Helper-Firefox.xpi` and install
 
 ## Chrome
 
-1. Open tab for [Chrome Extentions](chrome://extensions)
-1. Enable Developer Mode in top right corner
-1. Click "load unpacked"
-1. Select `chrome/` folder and install
+1. Open tab for [Chrome Extensions](chrome://extensions)
+2. Enable Developer Mode in top right corner.
+3. Click "Load Unpacked".
+4. Navigate to your unzipped folder. 
+5. Select `chrome/` folder and click "Select Folder". 
 
 ## Edge
 
-1. Same as Chrome. 
+1. Open tab for [Edge Extensions](edge://extensions)
+2. Enable Developer Mode on the left-hand side.
+3. Click "Load unpacked".
+4. Navigate to your unzipped folder.
+5. Select `chrome/` folder and click "Select Folder". 
