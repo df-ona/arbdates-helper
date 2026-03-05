@@ -439,3 +439,68 @@
   font-size: 11px;
   color: #888;
 }
+
+/* ─── Custom Lists ──────────────────────────────────────────── */
+#arb-lists-section {
+  border-top: 1.5px solid #f0f0f0;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+#arb-lists-row, #arb-save-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.arb-lists-select {
+  flex: 1;
+  padding: 7px 8px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 7px;
+  font-size: 13px;
+  background: #f9f9f9;
+  color: #1a1a2e;
+  outline: none;
+  cursor: pointer;
+}
+.arb-lists-select:focus { border-color: #4ecca3; }
+
+#arb-list-name-input {
+  flex: 1;
+  padding: 7px 8px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 7px;
+  font-size: 13px;
+  background: #f9f9f9;
+  color: #1a1a2e;
+  outline: none;
+}
+#arb-list-name-input:focus { border-color: #4ecca3; background: #fff; }
+
+.arb-lists-btn {
+  font-size: 11px;
+  padding: 6px 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+#arb-save-list-btn {
+  font-size: 11px;
+  padding: 6px 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: #4ecca3;
+  color: #fff;
+  border: none;
+}
+#arb-save-list-btn:hover { background: #38b28d; }
+
+.arb-lists-status {
+  font-size: 11px;
+  min-height: 16px;
+}
+.arb-lists-status.success { color: #38b28d; }
+.arb-lists-status.error   { color: #e05c5c; }
